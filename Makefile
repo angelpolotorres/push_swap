@@ -21,7 +21,8 @@ SRC_DIR = src
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC_CFILES))
 SRC_CFILES = \
 		push_swap.c \
-		manage_errors.c \
+		parse.c \
+		error.c \
 
 LIBFT_DIR =$(SRC_DIR)/libft
 PRINTF_DIR =$(SRC_DIR)/printf

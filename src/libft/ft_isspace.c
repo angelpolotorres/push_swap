@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_errors.c                                    :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 17:08:05 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/06 17:10:14 by apolo-to         ###   ########.fr       */
+/*   Created: 2023/09/07 08:44:44 by apolo-to          #+#    #+#             */
+/*   Updated: 2023/09/07 09:05:34 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_print_error(void)
+/**
+ * This ft checks if the char is 'space', \\t, \\n, \\v , \\f or \\r.
+ * @param	int c		: The character.
+ * @return	int			: 0 (no space), 1(space).
+*/
+int	ft_isspace(int c)
 {
-	ft_printf("Error\n");
-	exit(0);
+	if (c == 32 || c == 9 || c == 10 || c == 11 || c == 12 || c == 13)
+		return (1);
+	return (0);
 }

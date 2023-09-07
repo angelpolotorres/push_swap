@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:08:40 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/08/18 07:10:34 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:51:44 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 int		ft_isalpha(int arg);
 int		ft_isdigit(int arg);
@@ -67,4 +67,9 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void(*del)(void *));
+
+// Funciones nuevas
+int		ft_intlimits(const char *str);
+int		ft_isspace(int c);
+int		ft_isposneg(int c);
 #endif

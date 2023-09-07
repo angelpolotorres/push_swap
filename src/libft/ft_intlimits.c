@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:29:03 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/06 16:44:39 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/07 09:57:57 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /**
  * This ft checks if an str will exceed int limits before ft_atoi use.
- * @param char *str		- A string of digits.
- * @return int			- 1(ok), 0(exceed). 
+ * @param char *str		: A string of digits.
+ * @return int			: 1(ok), 0(exceed). 
 */
-int	ft_int_limits(const char *str)
+int	ft_intlimits(const char *str)
 {
 	int		i;
 	long	res;
@@ -26,8 +26,7 @@ int	ft_int_limits(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
+	while(ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

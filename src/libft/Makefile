@@ -64,6 +64,8 @@ SRC_CFILES = \
 		ft_lstiter.c \
 		ft_lstmap.c \
 		ft_intlimits.c \
+		ft_isspace.c \
+		ft_isposneg.c \
 
 # Object files ----------------------------------------------- #
 # ------------------------------------------------------------ #
