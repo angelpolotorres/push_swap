@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:09:14 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 13:20:53 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:32:42 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	ft_check_chars(const char *str)
 	return (i);
 }
 
-// int	ft_add_num_to_list(int	number)
-// {
+int	ft_add_num_to_list(int	number)
+{
 	
-// }
+}
 
-int	ft_parse_input(const char *str_nums, t_number **stack_a)
+int	ft_parse_input(const char *str_nums, t_stack **stack_a)
 {
 	const char	*ptr_str_nums;
 	int			chars_readed;

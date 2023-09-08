@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:53:46 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 10:36:16 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:26:38 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_number	*stack_a;
+	t_stack	*stack_a;
 	int			error;
 	int			arg;
 
