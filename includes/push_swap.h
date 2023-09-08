@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:13:19 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 13:27:13 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:31:22 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ enum	e_error
 
 typedef struct s_stack
 {
-	int				number;
-	int				alias_num;
+	int				num;
+	int				a_num;
 	struct s_stack	*next;
 }	t_stack;
 
