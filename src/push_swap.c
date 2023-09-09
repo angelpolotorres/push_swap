@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:53:46 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 17:12:55 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/09 09:53:50 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,16 @@ void	ft_print_stack(t_stack *stack)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
-	int			error;
-	int			arg;
+	int		arg;
 
 	stack_a = NULL;
-	error = NO_ERROR;
+	arg = 0;
 	if (argc == 1 || !ft_strlen(argv[1]))
-	{
-		ft_printf("Error\n");
-		error = E_PARAMS_NOT_FOUND;
-	}
-	arg = 1;
-	while (arg < argc)
-	{
-		if(ft_parse_input(argv[arg], &stack_a) == ERROR)
-		{
-			ft_printf("->Error\n");
-			error = E_INVALID_PARAM;
-			break;
-		}
-		arg++;
-	}
+		ft_exit(E_PARAMS_NOT_FOUND);
+	while (++arg < argc)
+		ft_parse_input(argv[arg], &stack_a);
 	// Si no hay error y no esta ordenada -> ordenar
 	// Liberar stack
 	ft_print_stack(stack_a);
-	return (error);
+	return (0);
 }

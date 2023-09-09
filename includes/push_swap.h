@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:13:19 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 16:31:22 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:14:49 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ enum	e_error
 	E_INVALID_PARAM = 2,
 	E_PARAMS_NOT_FOUND = 3,
 	E_INT_LIMITS_EXCEEDED = 4,
+	E_MALLOC_FAIL = 5,
 };
 
 typedef struct s_stack
@@ -30,5 +31,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-int	ft_parse_input(const char *str, t_stack **stack_a);
+int		ft_parse_input(const char *str, t_stack **stack_a);
+void	ft_exit(int error_type);
+void	ft_free_exit(t_stack *stack, int error_type);
 #endif

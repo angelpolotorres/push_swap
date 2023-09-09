@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:09:14 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/08 17:06:52 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:24:13 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int	ft_check_chars(const char *str)
 	while (str[i] != '\0' && !ft_isspace(str[i]))
 	{
 		if (!ft_isdigit(str[i]) && !ft_isposneg(str[i]))
-			return (ERROR);
+			ft_exit(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && ft_isposneg(str[i + 1]))
-			return (ERROR);
+			ft_exit(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && str[i + 1] == '\0')
-			return (ERROR);
+			ft_exit(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && ft_isspace(str[i + 1]))
-			return (ERROR);
+			ft_exit(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && !ft_isspace(str[i + 1])
 			&& ft_isposneg(str[i + 2]))
-			return (ERROR);
+			ft_exit(E_INVALID_PARAM);
 		i++;
 	}
 	while (ft_isspace(str[i]))
@@ -41,13 +41,13 @@ int	ft_check_chars(const char *str)
 	return (i);
 }
 
-t_stack	*ft_create_node_num(int number)
+t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 {
-	t_stack *new_node;
+	t_stack	*new_node;
 
 	new_node = malloc(sizeof(t_stack));
 	if (new_node == NULL)
-		return (NULL);
+		ft_free_exit(stack_a, E_MALLOC_FAIL);
 	new_node->num = number;
 	new_node->a_num = 1;
 	new_node->next = NULL;
@@ -59,42 +59,58 @@ int	ft_add_num_to_list(t_stack **stack_a, int number)
 	t_stack	*new_node;
 	t_stack	*aux;
 
-	new_node = ft_create_node_num(number);
-	if(new_node == NULL)
-		return (0);
+	new_node = ft_create_node_num(*stack_a, number);
 	if (*stack_a == NULL)
 		*stack_a = new_node;
 	else
 	{
 		aux = *stack_a;
-		while(aux->next != NULL)
+		if (aux->num > new_node->num)
+			aux->a_num++;
+		else
+			new_node->a_num++;
+		while (aux->next != NULL)
 		{
+			aux = aux->next;
 			if (aux->num > new_node->num)
 				aux->a_num++;
 			else
 				new_node->a_num++;
-			aux = aux->next;
 		}
 		aux->next = new_node;
 	}
 	return (1);
 }
 
-int	ft_parse_input(const char *str_nums, t_stack **stack_a)
+int	ft_is_num_repeated(t_stack *stack_a, int number)
 {
-	const char	*ptr_str_nums;
-	int			chars_readed;
+	while(stack_a != NULL)
+	{
+		if(stack_a->num == number)
+			return (1);
+		stack_a = stack_a->next;
+	}
+	return (0);
+}
 
-	ptr_str_nums = str_nums;
-	chars_readed = ft_check_chars(ptr_str_nums);
-	if (chars_readed == ERROR)
+int	ft_parse_input(const char *str, t_stack **stack_a)
+{
+	const char	*ptr_str;
+	int			chars_readed;
+	int			num;
+
+	ptr_str = str;
+	chars_readed = ft_check_chars(ptr_str);
+
+	if (!ft_intlimits(ptr_str))
+		ft_exit(E_INVALID_PARAM);
+	num = ft_atoi(ptr_str);
+	if (ft_is_num_repeated(*stack_a, num))
+		ft_exit(E_INVALID_PARAM);
+	if (!ft_add_num_to_list(stack_a, num))
 		return (ERROR);
-	if (!ft_intlimits(ptr_str_nums))
-		return (ERROR);
-	if(!ft_add_num_to_list(stack_a, ft_atoi(ptr_str_nums)))
-		return (ERROR);
-	ptr_str_nums = ptr_str_nums + chars_readed;
-	if (*ptr_str_nums != '\0')
-		return (ft_parse_input(ptr_str_nums, stack_a));
+	ptr_str = ptr_str + chars_readed;
+	if (*ptr_str != '\0')
+		return (ft_parse_input(ptr_str, stack_a));
 	return (1);
 }
