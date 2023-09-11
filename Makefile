@@ -22,6 +22,10 @@ SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC_CFILES))
 SRC_CFILES = \
 		push_swap.c \
 		parse.c \
+		sort.c \
+		sort_10.c \
+		mov_swap.c \
+		mov_rotate.c \
 		error.c \
 
 LIBFT_DIR =$(SRC_DIR)/libft

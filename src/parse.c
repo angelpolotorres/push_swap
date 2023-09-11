@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:09:14 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/11 11:30:06 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:47:20 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "ft_printf.h"
 #include "push_swap.h"
 
+/**
+ * This ft checks input string to find invalid chars and 
+ * counts the chars readed.
+ * @param char* str		: The arguments input string.
+ * @return int i		: Number of readed chars.
+*/
 static int	ft_check_chars(const char *str)
 {
 	int	i;
@@ -41,6 +47,12 @@ static int	ft_check_chars(const char *str)
 	return (i);
 }
 
+/**
+ * This ft creates a new node
+ * @param t_stack *stack_a		: The stack to free it in case of malloc error.
+ * @param int number			: The number to create the node.
+ * @return t_stack* new_node	: A ptr to the new node.
+*/
 static t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 {
 	t_stack	*new_node;
@@ -54,7 +66,15 @@ static t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 	return (new_node);
 }
 
-static int	ft_add_num_to_list(t_stack **stack_a, int number)
+/**
+ * This ft creates a new_node and add the node to the back of list.
+ * Also create an alias into the node to be used in the sort.
+ * This alias is an alternative number to the sort.
+ * @param t_stack **stack_a	: The stack to add nodes.
+ * @param int number		: The number to add.
+ * @return void
+*/
+static void	ft_add_num_to_list(t_stack **stack_a, int number)
 {
 	t_stack	*new_node;
 	t_stack	*aux;
@@ -79,9 +99,14 @@ static int	ft_add_num_to_list(t_stack **stack_a, int number)
 		}
 		aux->next = new_node;
 	}
-	return (1);
 }
 
+/**
+ * This ft checks if a number is repeated in the stack.
+ * @param int number		: The number to check.
+ * @param t_stack *stack_a	: The stack a.
+ * @return void
+*/
 static void	ft_is_num_repeated(t_stack *stack_a, int number)
 {
 	while (stack_a != NULL)
@@ -92,6 +117,17 @@ static void	ft_is_num_repeated(t_stack *stack_a, int number)
 	}
 }
 
+/**
+ * This recursive ft calls others fts for: 
+ * - Check that the chars in the string are valid.
+ * - Checks if the future number is within the int limits.
+ * - Transform the str to number.
+ * - Check if the number is repeated.
+ * - Add the number to the linked list.
+ * @param char *str			: Input arguments string.
+ * @param t_stack **stack_a	: Double pointer to stack_a.
+ * @return void
+*/
 void	ft_parse_str_to_num(const char *str, t_stack **stack_a)
 {
 	const char	*ptr_str;
@@ -104,7 +140,7 @@ void	ft_parse_str_to_num(const char *str, t_stack **stack_a)
 		ft_exit(E_INVALID_PARAM);
 	num = ft_atoi(ptr_str);
 	ft_is_num_repeated(*stack_a, num);
-	ft_add_num_to_list(stack_a, num); 
+	ft_add_num_to_list(stack_a, num);
 	ptr_str = ptr_str + chars_readed;
 	if (*ptr_str != '\0')
 		return (ft_parse_str_to_num(ptr_str, stack_a));
