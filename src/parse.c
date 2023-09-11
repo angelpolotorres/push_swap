@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:09:14 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/09 14:24:13 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:30:06 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include "push_swap.h"
 
-int	ft_check_chars(const char *str)
+static int	ft_check_chars(const char *str)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ int	ft_check_chars(const char *str)
 	return (i);
 }
 
-t_stack	*ft_create_node_num(t_stack *stack_a, int number)
+static t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 {
 	t_stack	*new_node;
 
@@ -54,7 +54,7 @@ t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 	return (new_node);
 }
 
-int	ft_add_num_to_list(t_stack **stack_a, int number)
+static int	ft_add_num_to_list(t_stack **stack_a, int number)
 {
 	t_stack	*new_node;
 	t_stack	*aux;
@@ -82,18 +82,17 @@ int	ft_add_num_to_list(t_stack **stack_a, int number)
 	return (1);
 }
 
-int	ft_is_num_repeated(t_stack *stack_a, int number)
+static void	ft_is_num_repeated(t_stack *stack_a, int number)
 {
-	while(stack_a != NULL)
+	while (stack_a != NULL)
 	{
-		if(stack_a->num == number)
-			return (1);
+		if (stack_a->num == number)
+			ft_exit(E_INVALID_PARAM);
 		stack_a = stack_a->next;
 	}
-	return (0);
 }
 
-int	ft_parse_input(const char *str, t_stack **stack_a)
+void	ft_parse_str_to_num(const char *str, t_stack **stack_a)
 {
 	const char	*ptr_str;
 	int			chars_readed;
@@ -101,16 +100,12 @@ int	ft_parse_input(const char *str, t_stack **stack_a)
 
 	ptr_str = str;
 	chars_readed = ft_check_chars(ptr_str);
-
 	if (!ft_intlimits(ptr_str))
 		ft_exit(E_INVALID_PARAM);
 	num = ft_atoi(ptr_str);
-	if (ft_is_num_repeated(*stack_a, num))
-		ft_exit(E_INVALID_PARAM);
-	if (!ft_add_num_to_list(stack_a, num))
-		return (ERROR);
+	ft_is_num_repeated(*stack_a, num);
+	ft_add_num_to_list(stack_a, num); 
 	ptr_str = ptr_str + chars_readed;
 	if (*ptr_str != '\0')
-		return (ft_parse_input(ptr_str, stack_a));
-	return (1);
+		return (ft_parse_str_to_num(ptr_str, stack_a));
 }

@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:13:19 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/09 11:14:49 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:28:09 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-int		ft_parse_input(const char *str, t_stack **stack_a);
+void	ft_parse_str_to_num(const char *str, t_stack **stack_a);
 void	ft_exit(int error_type);
 void	ft_free_exit(t_stack *stack, int error_type);
 #endif
