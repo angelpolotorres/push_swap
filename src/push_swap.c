@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:53:46 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/11 16:30:15 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:53:43 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	main(int argc, char **argv)
 		ft_exit(E_PARAMS_NOT_FOUND);
 	while (++arg < argc)
 		ft_parse_str_to_num(argv[arg], &stack_a);
-	if (!ft_is_sorted(stack_a))
+	if (!ft_is_stack_sorted(stack_a))
 		ft_sort_stack(&stack_a);
-	ft_print_stack(stack_a);
+	// ft_print_stack(stack_a);
 	ft_free(stack_a);
 	return (0);
 }
