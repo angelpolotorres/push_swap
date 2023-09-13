@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:13:19 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/12 15:55:11 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:14:31 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,18 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+/* ---- Utils ---- */
 void	ft_parse_str_to_num(const char *str, t_stack **stack_a);
 int		ft_is_stack_sorted(t_stack *stack);
 void	ft_sort_stack(t_stack **stack_a);
 int		ft_get_stack_size(t_stack *stack);
+int		ft_get_smallest_num_pos(t_stack **stack);
+int		ft_get_biggest_num_pos(t_stack **stack);
+void	up_num_from_top(t_stack **s_a, t_stack **s_b, int num_pos, char tar);
+void	up_num_from_bot(t_stack **s_a, t_stack **s_b, int num_pos, char tar);
+void	ft_sort_100(t_stack **stack_a, t_stack **stack_b, int biggest_num);
 
-void	ft_sort_3(t_stack **stack_a);
-void	ft_sort_10(t_stack **stack_a, t_stack **stack_b);
-
+/* ---- Sort movements ---- */
 void	ft_swap_a(t_stack **stack_a);
 void	ft_swap_b(t_stack **stack_b);
 void	ft_swap_ab(t_stack **stack_a, t_stack **stack_b);
@@ -57,9 +61,11 @@ void	ft_rev_rotate_ab(t_stack **stack_a, t_stack **stack_b);
 void	ft_push_a(t_stack **stack_a, t_stack **stack_b);
 void	ft_push_b(t_stack **stack_a, t_stack **stack_b);
 
+/* ---- Error, free and exit ---- */
 void	ft_free(t_stack *stack);
 void	ft_exit(int error_type);
 void	ft_free_exit(t_stack *stack, int error_type);
 
+/* ---- DELETE ---- */
 void	ft_print_stack(t_stack *stack);
 #endif

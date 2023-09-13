@@ -23,8 +23,8 @@ SRC_CFILES = \
 		push_swap.c \
 		parse.c \
 		sort.c \
-		sort_3.c \
-		sort_10.c \
+		sort_utils.c \
+		sort_100.c \
 		mov_swap.c \
 		mov_push.c \
 		mov_rotate.c \
