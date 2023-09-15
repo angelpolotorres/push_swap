@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:37:38 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/13 16:05:26 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:47:50 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,13 @@ void	ft_sort_100(t_stack **stack_a, t_stack **stack_b, int biggest_num)
 	int	biggest_pos;
 	int	smallest_num;
 
+	(void) stack_b;
 	smallest_num = 1;
 	biggest_pos = ft_get_biggest_num_pos(stack_a);
 	size_chunk = biggest_num / 4;
+
+	printf("biggst num pos -> %i\n", biggest_pos);
+	printf("size chunks -> %i\n", size_chunk);
 	while (ft_get_stack_size(*stack_a) > 0)
 	{
 		ft_push_chunk_to_b(stack_a, stack_b, smallest_num);
