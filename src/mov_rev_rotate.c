@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:35:33 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/12 12:03:09 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:00:18 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 */
 void	ft_rev_rotate_a(t_stack **stack_a)
 {
-	t_stack	*top_num;
-	t_stack	*semi_bot_num;
-	t_stack	*bot_num;
+	t_stack	*aux;
+	t_stack	*last_node;
 
-	top_num = *stack_a;
-	semi_bot_num = top_num->next;
-	while (semi_bot_num->next->next != NULL)
-		semi_bot_num = semi_bot_num->next;
-	bot_num = semi_bot_num->next;
-	bot_num->next = top_num;
-	semi_bot_num->next = NULL;
-	*stack_a = bot_num;
-	ft_printf("rra\n");
+	if (ft_get_stack_size(*stack_a) > 1)
+	{
+		aux = *stack_a;
+		last_node = ft_get_last_stack_node(aux);
+		while (aux->next != NULL && aux->next != last_node)
+			aux = aux->next;
+		aux->next = NULL;
+		ft_add_node_beginning_stack(stack_a, last_node);
+		ft_printf("rra\n");
+	}
 }
 
 /**
@@ -44,19 +44,19 @@ void	ft_rev_rotate_a(t_stack **stack_a)
 */
 void	ft_rev_rotate_b(t_stack **stack_b)
 {
-	t_stack	*top_num;
-	t_stack	*semi_bot_num;
-	t_stack	*bot_num;
+	t_stack	*aux;
+	t_stack	*last_node;
 
-	top_num = *stack_b;
-	semi_bot_num = top_num->next;
-	while (semi_bot_num->next->next != NULL)
-		semi_bot_num = semi_bot_num->next;
-	bot_num = semi_bot_num->next;
-	bot_num->next = top_num;
-	semi_bot_num->next = NULL;
-	*stack_b = bot_num;
-	ft_printf("rrb\n");
+	if (ft_get_stack_size(*stack_b) > 1)
+	{
+		aux = *stack_b;
+		last_node = ft_get_last_stack_node(aux);
+		while (aux->next != NULL && aux->next != last_node)
+			aux = aux->next;
+		aux->next = NULL;
+		ft_add_node_beginning_stack(stack_b, last_node);
+		ft_printf("rrb\n");
+	}
 }
 
 /**

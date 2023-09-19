@@ -6,11 +6,30 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:57:58 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/13 15:06:40 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:44:08 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/**
+ * This ft checks if stack is sorted.
+ * @param	t_stack* stack	: Stack to check.
+ * @return	int				: (1)Sorted, (0)No sorted.
+*/
+int	ft_is_stack_sorted(t_stack *stack)
+{
+	t_stack	*node;
+
+	node = stack;
+	while (node != NULL)
+	{
+		if (node->next != NULL && node->a_num > node->next->a_num)
+			return (NO_SORTED);
+		node = node->next;
+	}
+	return (SORTED);
+}
 
 /**
  * This ft sorts an stack with 3 numbers.
@@ -60,9 +79,9 @@ void	ft_sort_10(t_stack **stack_a, t_stack **stack_b)
 	{
 		num_pos = ft_get_smallest_num_pos(stack_a);
 		if (num_pos <= (ft_get_stack_size(*stack_a) / 2))
-			up_num_from_top(stack_a, stack_b, num_pos, 'b');
+			ft_up_num_from_top_pb(stack_a, stack_b, num_pos);
 		else
-			up_num_from_bot(stack_a, stack_b, num_pos, 'b');
+			ft_up_num_from_bot_pb(stack_a, stack_b, num_pos);
 	}
 	if (ft_is_stack_sorted(*stack_a) == NO_SORTED)
 		ft_sort_3(stack_a);
@@ -90,6 +109,6 @@ void	ft_sort_stack(t_stack **stack_a)
 		ft_sort_10(stack_a, &stack_b);
 	if (stack_a_size > 10 && stack_a_size <= 100)
 		ft_sort_100(stack_a, &stack_b, stack_a_size);
-	// if (stack_a_size > 100 && stack_a_size <= 500)
-	// 	ft_sort_500(stack_a, &stack_b);
+	if (stack_a_size > 100 && stack_a_size <= 500)
+		ft_sort_500(stack_a, &stack_b, stack_a_size);
 }

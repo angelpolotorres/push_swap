@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:53:46 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/13 10:33:27 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 10:52:39 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 		ft_parse_str_to_num(argv[arg], &stack_a);
 	if (!ft_is_stack_sorted(stack_a))
 		ft_sort_stack(&stack_a);
-	ft_print_stack(stack_a);
 	ft_free(stack_a);
 	return (0);
 }

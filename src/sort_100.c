@@ -6,63 +6,70 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:37:38 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/15 15:47:50 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:36:36 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_get_smallest_num(t_stack **stack)
-{
-	t_stack	*aux;
-	int		smallest_num;
-
-	aux = *stack;
-	smallest_num = aux->a_num;
-	while (aux->next != NULL)
-	{
-		if(aux->a_num < smallest_num)
-			smallest_num = aux->a_num;
-		aux = aux->next;
-	}
-	return (smallest_num);
-}
-
-void	ft_push_chunk_to_b(t_stack **stack_a, t_stack **stack_b, int smallest_num)
-{
-	t_stack	*aux;
-	int		i;
-
-	aux = *stack_a;
-	i = smallest_num;
-	while(i > 0)
-	{
-		if (aux->a_num <= smallest_num)
-		{
-			ft_push_b(stack_a, stack_b);
-			i--;
-		}
-		else
-			ft_rotate_a(stack_a);
-	}
-}
-
+/**
+ * This function sort an stack of 100 numbers or less.
+ * @param	t_stack** stack_a	: The stack A.
+ * @param	t_stack** stack_b	: The stack B.
+ * @param	int biggest_num		: The biggest alias_num of stack.
+ * @return	void
+*/
 void	ft_sort_100(t_stack **stack_a, t_stack **stack_b, int biggest_num)
 {
-	int	size_chunk;
+	int	chunks;
 	int	biggest_pos;
 	int	smallest_num;
 
 	(void) stack_b;
 	smallest_num = 1;
-	biggest_pos = ft_get_biggest_num_pos(stack_a);
-	size_chunk = biggest_num / 4;
-
-	printf("biggst num pos -> %i\n", biggest_pos);
-	printf("size chunks -> %i\n", size_chunk);
+	chunks = biggest_num / 4;
 	while (ft_get_stack_size(*stack_a) > 0)
 	{
 		ft_push_chunk_to_b(stack_a, stack_b, smallest_num);
-		smallest_num = smallest_num + size_chunk;
+		smallest_num = smallest_num + chunks;
+	}
+	while (ft_get_stack_size(*stack_b) > 0)
+	{
+		biggest_pos = ft_get_biggest_num_pos(stack_b);
+		if (biggest_pos <= (ft_get_stack_size(*stack_b) / 2))
+			ft_up_num_from_top_pa(stack_a, stack_b, biggest_pos);
+		else if (biggest_pos > (ft_get_stack_size(*stack_b) / 2))
+			ft_up_num_from_bot_pa(stack_a, stack_b, biggest_pos);
+	}
+}
+
+/**
+ * This function sort an stack of 500 numbers or less.
+ * @param	t_stack** stack_a	: The stack A.
+ * @param	t_stack** stack_b	: The stack B.
+ * @param	int biggest_num		: The biggest alias_num of stack.
+ * @return	void
+*/
+void	ft_sort_500(t_stack **stack_a, t_stack **stack_b, int biggest_num)
+{
+	int	chunks;
+	int	biggest_pos;
+	int	smallest_num;
+
+	(void) stack_b;
+	smallest_num = 1;
+	chunks = biggest_num / 8;
+	while (ft_get_stack_size(*stack_a) > 0)
+	{
+		ft_push_chunk_to_b(stack_a, stack_b, smallest_num);
+		smallest_num = smallest_num + chunks;
+	}
+	while (ft_get_stack_size(*stack_b) > 0)
+	{
+		biggest_pos = ft_get_biggest_num_pos(stack_b);
+		if (biggest_pos <= (ft_get_stack_size(*stack_b) / 2))
+			ft_up_num_from_top_pa(stack_a, stack_b, biggest_pos);
+		else if (biggest_pos > (ft_get_stack_size(*stack_b) / 2))
+			ft_up_num_from_bot_pa(stack_a, stack_b, biggest_pos);
 	}
 }

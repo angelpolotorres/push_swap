@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:27:31 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/13 14:23:26 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:08:56 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,15 @@
 */
 void	ft_push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*top_a;
-	t_stack	*top_b;
+	t_stack	*aux;
 
-	if (*stack_b == NULL)
-		return ;
-	top_b = *stack_b;
-	if (top_b->next == NULL)
-		*stack_b = NULL;
-	else
-		*stack_b = top_b->next;
-	if (*stack_a == NULL)
+	if (ft_get_stack_size(*stack_b) > 0)
 	{
-		*stack_a = top_b;
-		top_b->next = NULL;
+		aux = *stack_b;
+		*stack_b = (*stack_b)->next;
+		ft_add_node_beginning_stack(stack_a, aux);
+		ft_printf("pa\n");
 	}
-	else
-	{
-		top_a = *stack_a;
-		*stack_a = top_b;
-		top_b->next = top_a;
-	}
-	ft_printf("pa\n");
 }
 
 /**
@@ -55,76 +42,37 @@ void	ft_push_a(t_stack **stack_a, t_stack **stack_b)
 */
 void	ft_push_b(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*top_a;
-	t_stack	*top_b;
+	t_stack	*aux;
 
-	if (*stack_a == NULL)
-		return ;
-	top_a = *stack_a;
-	if (top_a->next == NULL)
-		*stack_a = NULL;
-	else
-		*stack_a = top_a->next;
-	if (*stack_b == NULL)
+	if (ft_get_stack_size(*stack_a) > 0)
 	{
-		*stack_b = top_a;
-		top_a->next = NULL;
+		aux = *stack_a;
+		*stack_a = (*stack_a)->next;
+		ft_add_node_beginning_stack(stack_b, aux);
+		ft_printf("pb\n");
 	}
-	else
-	{
-		top_b = *stack_b;
-		*stack_b = top_a;
-		top_a->next = top_b;
-	}
-	ft_printf("pb\n");
 }
 
 /**
- * This function moves a num from top half stack to the top using rotate
- * Then push the number to target stack 'a' or 'b' using push.
- * @param	t_stack* s_a	: The A stack.
- * @param	t_stack* s_b	: The B stack.
- * @param	int num_pos		: The position of number.
- * @param	char tar		: The target stack
+ * This ft push a nbr from stack B to stack A.
+ * Then print "pb" on screen.
+ * @param	t_stack** stack_a	: The stack A.
+ * @param	t_stack** stack_b	: The stack B.
  * @return	void
 */
-void	up_num_from_top(t_stack **s_a, t_stack **s_b, int num_pos, char tar)
+void	ft_push_chunk_to_b(t_stack **stack_a, t_stack **stack_b, int num)
 {
-	while (num_pos > 1)
-	{
-		if (tar == 'a')
-			ft_rotate_b(s_b);
-		else
-			ft_rotate_a(s_a);
-		num_pos--;
-	}
-	if (tar == 'a')
-		ft_push_a(s_a, s_b);
-	else
-		ft_push_b(s_a, s_b);
-}
+	int		count;
 
-/**
- * This function moves a num from bottom half stack to the top using rotate
- * Then push the number to target stack 'a' or 'b' using push.
- * @param	t_stack* s_a	: The A stack.
- * @param	t_stack* s_b	: The B stack.
- * @param	int num_pos		: The position of number.
- * @param	char tar		: The target stack
- * @return	void
-*/
-void	up_num_from_bot(t_stack **s_a, t_stack **s_b, int num_pos, char tar)
-{
-	while (num_pos <= ft_get_stack_size(*s_a))
+	count = ft_nums_under_limit(stack_a, num);
+	while (count > 0)
 	{
-		if (tar == 'b')
-			ft_rev_rotate_a(s_a);
+		if ((*stack_a)->a_num <= num)
+		{
+			ft_push_b(stack_a, stack_b);
+			count--;
+		}
 		else
-			ft_rev_rotate_b(s_b);
-		num_pos++;
+			ft_rotate_a(stack_a);
 	}
-	if (tar == 'b')
-		ft_push_b(s_a, s_b);
-	else
-		ft_push_a(s_a, s_b);
 }

@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:22:50 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/12 11:57:34 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:11:30 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,16 @@
 */
 void	ft_rotate_a(t_stack **stack_a)
 {
-	t_stack	*top_num;
-	t_stack	*semi_top_num;
-	t_stack	*bottom_num;
+	t_stack	*aux;
 
-	top_num = *stack_a;
-	semi_top_num = top_num->next;
-	bottom_num = semi_top_num->next;
-	while (bottom_num->next != NULL)
-		bottom_num = bottom_num->next;
-	bottom_num->next = top_num;
-	top_num->next = NULL;
-	*stack_a = semi_top_num;
-	ft_printf("ra\n");
+	if (ft_get_stack_size(*stack_a) > 1)
+	{
+		aux = *stack_a;
+		*stack_a = (*stack_a)->next;
+		aux->next = NULL;
+		ft_add_node_end_stack(stack_a, aux);
+		ft_printf("ra\n");
+	}
 }
 
 /**
@@ -44,19 +41,16 @@ void	ft_rotate_a(t_stack **stack_a)
 */
 void	ft_rotate_b(t_stack **stack_b)
 {
-	t_stack	*top_num;
-	t_stack	*semi_top_num;
-	t_stack	*bottom_num;
+	t_stack	*aux;
 
-	top_num = *stack_b;
-	semi_top_num = top_num->next;
-	bottom_num = semi_top_num->next;
-	while (bottom_num->next != NULL)
-		bottom_num = bottom_num->next;
-	bottom_num->next = top_num;
-	top_num->next = NULL;
-	*stack_b = semi_top_num;
-	ft_printf("rb\n");
+	if (ft_get_stack_size(*stack_b) > 1)
+	{
+		aux = *stack_b;
+		*stack_b = (*stack_b)->next;
+		aux->next = NULL;
+		ft_add_node_end_stack(stack_b, aux);
+		ft_printf("rb\n");
+	}
 }
 
 /**

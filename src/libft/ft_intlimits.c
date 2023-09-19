@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:29:03 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/07 09:57:57 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:51:47 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_intlimits(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
-	while(ft_isspace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

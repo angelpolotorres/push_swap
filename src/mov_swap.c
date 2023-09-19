@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:12:01 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/12 11:25:14 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:57:39 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@
 */
 void	ft_swap_a(t_stack **stack_a)
 {
-	t_stack	*top_num;
-	t_stack	*bot_num;
 	t_stack	*aux;
 
-	top_num = *stack_a;
-	bot_num = top_num->next;
-	aux = bot_num->next;
-	bot_num->next = top_num;
-	top_num->next = aux;
-	*stack_a = bot_num;
-	ft_printf("sa\n");
+	if (ft_get_stack_size(*stack_a) >= 2)
+	{
+		aux = *stack_a;
+		*stack_a = (*stack_a)->next;
+		aux->next = (*stack_a)->next;
+		(*stack_a)->next = aux;
+		ft_printf("sa\n");
+	}
 }
 
 /**
@@ -42,17 +41,16 @@ void	ft_swap_a(t_stack **stack_a)
 */
 void	ft_swap_b(t_stack **stack_b)
 {
-	t_stack	*top_num;
-	t_stack	*bot_num;
 	t_stack	*aux;
 
-	top_num = *stack_b;
-	bot_num = top_num->next;
-	aux = bot_num->next;
-	bot_num->next = top_num;
-	top_num->next = aux;
-	*stack_b = bot_num;
-	ft_printf("sb\n");
+	if (ft_get_stack_size(*stack_b) >= 2)
+	{
+		aux = *stack_b;
+		*stack_b = (*stack_b)->next;
+		aux->next = (*stack_b)->next;
+		(*stack_b)->next = aux;
+		ft_printf("sb\n");
+	}
 }
 
 /**

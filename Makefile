@@ -23,12 +23,14 @@ SRC_CFILES = \
 		push_swap.c \
 		parse.c \
 		sort.c \
-		sort_utils.c \
 		sort_100.c \
+		stack_utils.c \
+		stack_utils_2.c \
 		mov_swap.c \
 		mov_push.c \
 		mov_rotate.c \
 		mov_rev_rotate.c \
+		mov_stack.c \
 		error.c \
 
 LIBFT_DIR =$(SRC_DIR)/libft
