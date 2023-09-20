@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:49:02 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/19 16:25:41 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/20 09:46:33 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_get_biggest_num(t_stack **stack)
 }
 
 /**
- * This returns the biggest number position in stack.
+ * This ft returns the biggest number position in stack.
  * @param	t_stack* stack	: Stack to check.
  * @return	int				: The biggest number position.
 */
@@ -112,7 +112,11 @@ int	ft_get_biggest_num_pos(t_stack **stack)
 	return (biggest_pos);
 }
 
-// DELETE
+/**
+ * This ft prints an stack.
+ * @param	t_stack* stack	: Stack to print.
+ * @return	void
+*/
 void	ft_print_stack(t_stack *stack)
 {
 	t_stack	*current_num;
@@ -124,4 +128,3 @@ void	ft_print_stack(t_stack *stack)
 		current_num = current_num->next;
 	}
 }
-// DELETE

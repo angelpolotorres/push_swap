@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:13:19 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/19 16:45:38 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/20 09:45:32 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_stack	*ft_get_last_stack_node(t_stack *stack);
 void	ft_add_node_beginning_stack(t_stack **stack, t_stack *node);
 void	ft_add_node_end_stack(t_stack **stack, t_stack *node);
 int		ft_nums_under_limit(t_stack **stack_a, int smallest_num);
+void	ft_print_stack(t_stack *stack);
 
 /* ---- Stack Movements ---- */
 void	ft_push_a(t_stack **stack_a, t_stack **stack_b);
@@ -77,10 +78,8 @@ void	ft_rev_rotate_b(t_stack **stack_b);
 void	ft_rev_rotate_ab(t_stack **stack_a, t_stack **stack_b);
 
 /* ---- Errors, free and exit ---- */
-void	ft_free(t_stack *stack);
 void	ft_exit(int error_type);
-void	ft_free_exit(t_stack *stack, int error_type);
-
-/* ---- DELETE ---- */
-void	ft_print_stack(t_stack *stack);
+void	ft_free(t_stack *stack);
+void	ft_exit_error(int error_type);
+void	ft_free_exit_error(t_stack *stack, int error_type);
 #endif

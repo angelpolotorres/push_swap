@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:08:05 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/11 15:17:39 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/20 08:44:25 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,31 @@
 #include "ft_printf.h"
 
 /**
- * This ft prints "Error" and exit the program returning the number of error.
+ * This ft exits the program returning the number of error.
  * Error types are specified in the header file push_swap.h
  * @param int error_type	: The number of error.
  * @return void
 */
 void	ft_exit(int error_type)
 {
+	int	error;
+
+	error = 0;
+	if (error_type != 0)
+		error = error_type;
+	exit(error);
+}
+
+/**
+ * This ft prints "Error" and calls ft_exit to exit the program.
+ * Error types are specified in the header file push_swap.h
+ * @param int error_type	: The number of error.
+ * @return void
+*/
+void	ft_exit_error(int error_type)
+{
 	ft_printf("Error\n");
-	exit(error_type);
+	ft_exit(error_type);
 }
 
 /**
@@ -44,13 +60,13 @@ void	ft_free(t_stack *stack)
 }
 
 /**
- * This ft calls ft_free and ft_exit.
+ * This ft calls ft_free and ft_exit_error.
  * @param t_stack* stack	: The stack to free.
  * @param int error_type	: The number of error.
  * @return void
 */
-void	ft_free_exit(t_stack *stack, int error_type)
+void	ft_free_exit_error(t_stack *stack, int error_type)
 {
 	ft_free(stack);
-	ft_exit(error_type);
+	ft_exit_error(error_type);
 }

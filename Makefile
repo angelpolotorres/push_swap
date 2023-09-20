@@ -35,7 +35,6 @@ SRC_CFILES = \
 
 LIBFT_DIR =$(SRC_DIR)/libft
 PRINTF_DIR =$(SRC_DIR)/printf
-GNL_DIR =$(SRC_DIR)/gnl
 
 # Object files ----------------------------------------------- #
 # ------------------------------------------------------------ #
@@ -47,7 +46,7 @@ OBJ_DIR = build
 # ------------------------------------------------------------ #
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-LINKFLAGS = -L./$(LIBFT_DIR) -lft -L./$(PRINTF_DIR) -lprintf -L./$(GNL_DIR) -lgnl
+LINKFLAGS = -L./$(LIBFT_DIR) -lft -L./$(PRINTF_DIR) -lprintf
 INCL_DIR = includes
 
 # Rules ------------------------------------------------------ #
@@ -57,7 +56,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) -C $(PRINTF_DIR)
-	@$(MAKE) -C $(GNL_DIR)
 	@$(CC) $(CFLAGS) $(LINKFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)[+] $(NAME) compilado$(END)"
 
@@ -76,8 +74,6 @@ fclean: clean
 	@echo "$(GREEN)[+]$(END) libft borrado"
 	@$(MAKE) fclean -C $(PRINTF_DIR)
 	@echo "$(GREEN)[+]$(END) printf borrado"
-	@$(MAKE) fclean -C $(GNL_DIR)
-	@echo "$(GREEN)[+]$(END) gnl borrado"
 	@rm -f $(NAME)
 	@echo "$(GREEN)[+]$(END) $(NAME) borrado"
 

@@ -6,7 +6,7 @@
 /*   By: apolo-to <apolo-to@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:09:14 by apolo-to          #+#    #+#             */
-/*   Updated: 2023/09/19 16:42:14 by apolo-to         ###   ########.fr       */
+/*   Updated: 2023/09/20 08:41:18 by apolo-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static int	ft_check_chars(const char *str)
 	while (str[i] != '\0' && !ft_isspace(str[i]))
 	{
 		if (!ft_isdigit(str[i]) && !ft_isposneg(str[i]))
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && ft_isposneg(str[i + 1]))
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && str[i + 1] == '\0')
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && ft_isspace(str[i + 1]))
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		if (ft_isposneg(str[i]) && !ft_isspace(str[i + 1])
 			&& ft_isposneg(str[i + 2]))
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		i++;
 	}
 	while (ft_isspace(str[i]))
@@ -59,7 +59,7 @@ static t_stack	*ft_create_node_num(t_stack *stack_a, int number)
 
 	new_node = malloc(sizeof(t_stack));
 	if (new_node == NULL)
-		ft_free_exit(stack_a, E_MALLOC_FAIL);
+		ft_free_exit_error(stack_a, E_MALLOC_FAIL);
 	new_node->num = number;
 	new_node->a_num = 1;
 	new_node->next = NULL;
@@ -112,7 +112,7 @@ static void	ft_is_num_repeated(t_stack *stack_a, int number)
 	while (stack_a != NULL)
 	{
 		if (stack_a->num == number)
-			ft_exit(E_INVALID_PARAM);
+			ft_exit_error(E_INVALID_PARAM);
 		stack_a = stack_a->next;
 	}
 }
@@ -137,7 +137,7 @@ void	ft_parse_str_to_num(const char *str, t_stack **stack_a)
 	ptr_str = str;
 	chars_readed = ft_check_chars(ptr_str);
 	if (!ft_intlimits(ptr_str))
-		ft_exit(E_INVALID_PARAM);
+		ft_exit_error(E_INVALID_PARAM);
 	num = ft_atoi(ptr_str);
 	ft_is_num_repeated(*stack_a, num);
 	ft_add_num_to_list(stack_a, num);
