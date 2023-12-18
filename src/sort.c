@@ -109,6 +109,6 @@ void	ft_sort_stack(t_stack **stack_a)
 		ft_sort_10(stack_a, &stack_b);
 	if (stack_a_size > 10 && stack_a_size <= 100)
 		ft_sort_100(stack_a, &stack_b, stack_a_size);
-	if (stack_a_size > 100 && stack_a_size <= 500)
+	if (stack_a_size > 100)
 		ft_sort_500(stack_a, &stack_b, stack_a_size);
 }
